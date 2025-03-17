@@ -1,17 +1,33 @@
-import React from "react";
-import { Menu, Bell, Sun, Moon, Settings } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+"use client";
 
-function Navbar() {
-  const isDarkMode = false;
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
+import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed
+  );
+  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+  const toggleSidebar = () => {
+    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
+  };
+
+  const toggleDarkMode = () => {
+    dispatch(setIsDarkMode(!isDarkMode));
+  };
+
   return (
     <div className="flex justify-between items-center w-full mb-7">
       {/* LEFT SIDE */}
       <div className="flex justify-between items-center gap-5">
         <button
           className="px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100"
-          onClick={() => {}}
+          onClick={toggleSidebar}
         >
           <Menu className="w-4 h-4" />
         </button>
@@ -33,7 +49,7 @@ function Navbar() {
       <div className="flex justify-between items-center gap-5">
         <div className="hidden md:flex justify-between items-center gap-5">
           <div>
-            <button onClick={() => {}}>
+            <button onClick={toggleDarkMode}>
               {isDarkMode ? (
                 <Sun className="cursor-pointer text-gray-500" size={24} />
               ) : (
@@ -49,8 +65,8 @@ function Navbar() {
           </div>
           <hr className="w-0 h-7 border border-solid border-l border-gray-300 mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
-            Image
-            <span className="font-semibold">Tram</span>
+            Logo
+            <span className="font-semibold">Ed Roh</span>
           </div>
         </div>
         <Link href="/settings">
@@ -59,6 +75,6 @@ function Navbar() {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
