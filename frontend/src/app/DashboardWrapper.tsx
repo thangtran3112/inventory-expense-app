@@ -3,23 +3,18 @@
 import React, { useEffect } from "react";
 import Navbar from "@/app/(components)/Navbar/Navbar";
 import Sidebar from "@/app/(components)/Sidebar/Sidebar";
-import StoreProvider from "./redux";
-// import StoreProvider, { useAppSelector } from "./redux";
+import StoreProvider, { useAppSelector } from "./redux";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  // const isSidebarCollapsed = useAppSelector(
-  //     (state) => state.global.isSidebarCollapsed
-  //   );
-  // const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-  const isSidebarCollapsed = false;
-  const isDarkMode = false;
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed
+  );
+  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
     }
   });
@@ -28,7 +23,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`${
         isDarkMode ? "dark" : "light"
-      } bg-gray-50 text-gray-900 w-full min-h-screen`}
+      } flex bg-gray-50 text-gray-900 w-full min-h-screen`}
     >
       <Sidebar />
       <main
