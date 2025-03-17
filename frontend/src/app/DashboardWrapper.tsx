@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import Navbar from "@/app/(components)/Navbar/Navbar";
 import Sidebar from "@/app/(components)/Sidebar/Sidebar";
+import StoreProvider from "./redux";
 // import StoreProvider, { useAppSelector } from "./redux";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -43,7 +44,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 const DashboardWrapper = ({ children }: { children: React.ReactNode }) => {
-  return <DashboardLayout>{children}</DashboardLayout>;
+  return (
+    <StoreProvider>
+      <DashboardLayout>{children}</DashboardLayout>
+    </StoreProvider>
+  );
 };
 
 export default DashboardWrapper;
