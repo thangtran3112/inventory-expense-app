@@ -35,6 +35,18 @@ sudo service postgresql stop
     npm init -y
     npm i prisma @prisma/client
     npx prisma init
-    npm i -D typescript
+    npm i -D typescript ts-node @types/node
     npx tsc --init
+    npm i express body-parser cors dotenv helmet morgan concurrently
+    npm i -D nodemon @types/cors @types/express @types/morgan
 ```
+
+## Build prisma schema into database and create client
+
+```zsh
+    npx prisma generate
+    npx prisma migrate dev --name init
+    npm run seed
+```
+
+- View schema diagram with either `npx prisma studio` or through `ERD Tool` in `Pg Admin`
