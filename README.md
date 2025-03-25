@@ -6,7 +6,7 @@
 - Frontend: NextJS 15, React 19, MUI datagrid, Tailwind, Redux
 - Backend: Express, Prisma
 
-## SQL Diagram
+## DynamoDB Relationship Diagram
 
 - ![SQL Diagram for Posgres](./SQLSchema.png)
 
